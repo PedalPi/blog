@@ -16,6 +16,9 @@ TIMEZONE = 'Europe/Paris'
 
 DEFAULT_LANG = 'en'
 THEME = "./themes/attila-1.1"
+OUTPUT_PATH = 'docs/'
+GOOGLE_ANALYTICS = 'UA-105440758-1'
+
 #THEME = "/home/paulo/git/pedalpi-blog/output"
 
 # Feed generation is usually not desired when developing

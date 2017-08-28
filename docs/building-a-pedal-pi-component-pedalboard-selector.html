@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Building a Pedal Pi Component - Pedalboard selector</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+  <link href="/" rel="canonical" />
+
+  <!-- Feed -->
+
+  <link href="/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="/theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+    <link href="/building-a-pedal-pi-component-pedalboard-selector.html" rel="canonical" />
+
+        <meta name="description" content="Often is necessary use a physical controller that manages the configurations based on our need. Digital audio equipment generally offers...">
+
+        <meta name="author" content="SrMouraSilva">
+
+        <meta name="tags" content="component">
+        <meta name="tags" content="Pedal Pi">
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Pedal Pi - Blog"/>
+<meta property="og:title" content="Building a Pedal Pi Component - Pedalboard selector"/>
+<meta property="og:description" content="Often is necessary use a physical controller that manages the configurations based on our need. Digital audio equipment generally offers..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="/building-a-pedal-pi-component-pedalboard-selector.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2017-07-26 00:00:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="/author/srmourasilva.html">
+<meta property="article:section" content="About"/>
+<meta property="article:tag" content="component"/>
+<meta property="article:tag" content="Pedal Pi"/>
+<meta property="og:image" content="/images/footswitch.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "Building a Pedal Pi Component - Pedalboard selector",
+  "headline": "Building a Pedal Pi Component - Pedalboard selector",
+  "datePublished": "2017-07-26 00:00:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "SrMouraSilva",
+    "url": "/author/srmourasilva.html"
+  },
+  "image": "/images/footswitch.jpg",
+  "url": "/building-a-pedal-pi-component-pedalboard-selector.html",
+  "description": "Often is necessary use a physical controller that manages the configurations based on our need. Digital audio equipment generally offers..."
+}
+</script>
+</head>
+<!-- TODO : Body class -->
+<body class="home-template">
+
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
+
+
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">Building a Pedal Pi Component - Pedalboard selector</h1>
+        <!-- TODO : Proper class for headline -->
+        <span class="post-meta">
+                <a href="/author/srmourasilva.html">Srmourasilva</a>
+            | <time datetime="Qua 26 julho 2017">Qua 26 julho 2017</time>
+        </span>
+        <!-- TODO : Modified check -->
+            <div class="post-cover cover" style="background-image: url('/images/footswitch.jpg')">
+      </div>
+    </header>
+
+  <section id="wrapper">
+    <a class="hidden-close"></a>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <p>Often is necessary use a physical controller that manages the configurations based on our need. Digital audio equipment generally offers support to <a href="https://en.wikipedia.org/wiki/MIDI">MIDI</a> protocol. By him, a MIDI controller equipment can manage it.</p>
+<p>Pedal Pi offers an alternative to the MIDI. By the <a href="http://pedalpi-application.readthedocs.io/en/latest/controller.html#notification-scope"><em>Pedal Pi component API</em></a>, is possible implements custom controllers using the hardware GPIO pins. Also, adding a GPIO library will be easy use the common electronic components like buttons, switches, and LEDs.</p>
+<p>In this article, we will create a simple component for manages the current pedalboard.</p>
+<h2>1. Configuring environment</h2>
+<p>The initial step is to install the requirements. We will assume that you are using a Raspberry Pi with an updated version of Raspbian OS. If you are not using the Raspbian, you can <a href="https://www.raspberrypi.org/downloads/raspbian/">download</a> and <a href="https://www.raspberrypi.org/documentation/installation/installing-images/">install</a> it.</p>
+<p>For managing the GPIO in high level, we will use the <a href="https://www.raspberrypi.org/blog/gpio-zero-a-friendly-python-api-for-physical-computing/">GPIO Zero, a friendly Python API for physical computing</a> <strong>for Raspberry Pi</strong>. <a href="https://gpiozero.readthedocs.io/en/stable/installing.html">This library is installed by default in Raspbian</a>, but you can install it using:</p>
+<div class="highlight"><pre><span></span>sudo apt update
+sudo apt install python3-gpiozero
+</pre></div>
+
+
+<p>If you haven't installed the Pedal Pi libraries, you can check out the <a href="/building-pedal-pi-raspberry-p0.html">article that explains how to configure a Pedal Pi machine</a>.</p>
+<h2>2. Testing the buttons</h2>
+<p>Our first script is a simple <em>hello world</em> like code using a button: Pressing the button, the script prints the classical Hello World in the console. If you haven't familiarity with python, a good choice is checking the <a href="https://www.raspberrypi.org/documentation/usage/python/">Rasberry Foundation Python Tutorial</a>.</p>
+<p>Connect the button like this:</p>
+<p><img alt="Connection with button and Raspberry Pi - Font: GPIO Zero" src="/images/gpiozero-button.png"></p>
+<p>And writes the first code:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">Button</span>
+
+<span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">button</span><span class="o">.</span><span class="n">is_pressed</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Button is pressed&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Button is not pressed&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Our goal is <em>when pressed</em> the button <strong>next</strong>, the current pedalboard changes to the next, and <em>when pressed</em> the button <strong>before</strong>, the current pedalboard changes to the before. The current code is not suitable if the user press during two seconds a button, as an example, it will changes the current pedalboard very times! Now we will fix it, printing the message only when the button is pressed.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="n">next_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">before_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">to_next_pedalboard</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Button next is pressed&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">to_before_pedalboard</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Button next is pressed&quot;</span><span class="p">)</span>
+
+<span class="n">next_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">to_next_pedalboard</span><span class="p">()</span>
+<span class="n">before_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">to_next_pedalboard</span><span class="p">()</span>
+
+<span class="n">sleep</span><span class="p">()</span>
+</pre></div>
+
+
+<p>For more details about the button GPIO Zero API, check <a href="http://gpiozero.readthedocs.io/en/stable/recipes.html#button">their documentation</a>.</p>
+<h2>3. I don't know</h2>
+<p><img alt="Pedal Pi components: Raspberry Pi, charger, SD Card and USB Audio interface" src="/images/footswitch.jpg"></p>
+<h2>5. Acknowledgment</h2>
+<p>Thanks for the open community by the free images used in this blog post!</p>
+<ul>
+<li><a href="http://gpiozero.readthedocs.io/en/stable/recipes.html#button">Button image from GPIO Zero documentation</a>.</li>
+</ul>
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=Building a Pedal Pi Component - Pedalboard selector&amp;url=/building-a-pedal-pi-component-pedalboard-selector.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=/building-a-pedal-pi-component-pedalboard-selector.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=/building-a-pedal-pi-component-pedalboard-selector.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+                <aside class="post-tags">
+<a href="/tag/component.html">component</a><a href="/tag/pedal-pi.html">Pedal Pi</a>                </aside>
+
+                <div class="clear"></div>
+
+
+                </section>
+
+
+                <aside class="post-nav">
+                    <div class="clear"></div>
+                </aside>
+
+            </div>
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
+
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script type="text/javascript" src="/theme/js/script.js"></script>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-105440758-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>
