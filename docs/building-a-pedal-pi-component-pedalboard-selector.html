@@ -146,7 +146,7 @@ sudo apt install python3-gpiozero
 
 <p>If you haven't installed the Pedal Pi libraries, you can check out the <a href="/building-pedal-pi-raspberry-p0.html">article that explains how to configure a Pedal Pi machine</a>.</p>
 <h2>2. Testing the buttons</h2>
-<p>Our first script is a simple <em>hello world</em> like code using a button: Pressing the button, the script prints the classical Hello World in the console. If you haven't familiarity with python, a good choice is checking the <a href="https://www.raspberrypi.org/documentation/usage/python/">Rasberry Foundation Python Tutorial</a>.</p>
+<p>Our first script is a simple <em>hello world</em> like code using a button: Pressing the button, the script prints the classical Hello World in the console. If you haven't familiarity with python, a good choice is checking the <a href="https://www.raspberrypi.org/documentation/usage/python/">Raspberry Foundation Python Tutorial</a>.</p>
 <p>Connect the button like this:</p>
 <p><img alt="Connection with button and Raspberry Pi - Font: GPIO Zero" src="/images/gpiozero-button.png"></p>
 <p>And writes the first code:</p>
@@ -167,25 +167,115 @@ sudo apt install python3-gpiozero
 <span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
 
 <span class="n">next_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">before_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">before_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">to_next_pedalboard</span><span class="p">():</span>
     <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Button next is pressed&quot;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">to_before_pedalboard</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Button next is pressed&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Button before is pressed&quot;</span><span class="p">)</span>
 
-<span class="n">next_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">to_next_pedalboard</span><span class="p">()</span>
-<span class="n">before_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">to_next_pedalboard</span><span class="p">()</span>
+<span class="n">next_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">to_next_pedalboard</span>
+<span class="n">before_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">to_before_pedalboard</span>
 
 <span class="n">sleep</span><span class="p">()</span>
 </pre></div>
 
 
 <p>For more details about the button GPIO Zero API, check <a href="http://gpiozero.readthedocs.io/en/stable/recipes.html#button">their documentation</a>.</p>
-<h2>3. I don't know</h2>
+<h2>3. Controlling the current pedalboard</h2>
+<p>For changes the current pedalboard, we can use the <a href="https://github.com/PedalPi/Application/blob/master/application/controller/current_controller.py#L24"><strong>CurrentContoller</strong></a>, a controller for manages the current pedalboard. This class contains some interesting methods, like <code>to_before_pedalboard</code> and <code>to_next_pedalboard</code> (we need them!).  For other methods, see <a href="http://pedalpi-application.readthedocs.io/en/latest/controller.html#currentcontroller">the CurrentController docs</a>. The following code shows how to obtains the controller by the application.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">application.controller.current_controller</span> <span class="kn">import</span> <span class="n">CurrentController</span>
+
+<span class="n">current_controller</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">controller</span><span class="p">(</span><span class="n">CurrentContoller</span><span class="p">)</span>
+
+<span class="c1"># ...</span>
+
+<span class="n">next_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">current_controller</span><span class="o">.</span><span class="n">to_next_pedalboard</span>
+<span class="n">before_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">current_controller</span><span class="o">.</span><span class="n">to_before_pedalboard</span>
+</pre></div>
+
+
+<p>Runs the Pedal Pi (for a while) requires the execution of the main code. It loads the components and initializes the Pedal Pi. We will write a new main code that contains the code to controls the Pedal Pi 😊.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">signal</span> <span class="kn">import</span> <span class="n">pause</span>
+
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">application.application</span> <span class="kn">import</span> <span class="n">Application</span>
+
+<span class="n">application</span> <span class="o">=</span> <span class="n">Application</span><span class="p">(</span><span class="n">path_data</span><span class="o">=</span><span class="s2">&quot;data/&quot;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">)</span>
+
+<span class="c1"># Code to controls the current pedalboard</span>
+<span class="kn">from</span> <span class="nn">application.controller.current_controller</span> <span class="kn">import</span> <span class="n">CurrentController</span>
+
+<span class="n">current_controller</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">controller</span><span class="p">(</span><span class="n">CurrentContoller</span><span class="p">)</span>
+<span class="n">next_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">before_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">next_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">current_controller</span><span class="o">.</span><span class="n">to_next_pedalboard</span>
+<span class="n">before_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">current_controller</span><span class="o">.</span><span class="n">to_before_pedalboard</span>
+
+<span class="c1"># The code must be before the &quot;start()&quot; calls.</span>
+<span class="n">application</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">pause</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+
+
+<h2>4. Class component</h2>
+<p>Mixing IHM code with other codes is a problem. Add more functionalities will cause confusing in a moment (hello <a href="https://en.wikipedia.org/wiki/Spaghetti_code">Spaghetti code</a>). We use now Object Orientation for improves our code.</p>
+<p>Now that we know how to use buttons in the library GPIO Zero, it's time to learn about components. Component in <em>Pedal Pi</em> is the <a href="http://pedalpi-application.readthedocs.io/en/latest/#extending">way that the <em>Application module</em> allows adding functionalities to Pedal Pi</a>. The functionalities are built, in general, to provides Human Machine Interface (HMI) or to provides an opening for an another software consumes the features. Through a component</p>
+<p>Changing the previous code for component support:</p>
+<div class="highlight"><pre><span></span><span class="c1"># FILE: pedalboard_selector.py</span>
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">application.component.component</span> <span class="kn">import</span> <span class="n">Component</span>
+<span class="kn">from</span> <span class="nn">application.controller.current_controller</span> <span class="kn">import</span> <span class="n">CurrentController</span>
+
+<span class="k">class</span> <span class="nc">PedalboardSelector</span><span class="p">(</span><span class="n">Component</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">application</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">RaspberryP0</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">application</span><span class="p">)</span>
+        <span class="n">current_controller</span> <span class="o">=</span> <span class="n">application</span><span class="o">.</span><span class="n">controller</span><span class="p">(</span><span class="n">CurrentContoller</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">before_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">next_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">current_controller</span><span class="o">.</span><span class="n">to_next_pedalboard</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">before_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">current_controller</span><span class="o">.</span><span class="n">to_before_pedalboard</span>
+
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next_button</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">before_button</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+
+<p>And add support</p>
+<div class="highlight"><pre><span></span><span class="c1"># FILE: main.py</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">signal</span> <span class="kn">import</span> <span class="n">pause</span>
+
+<span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">application.application</span> <span class="kn">import</span> <span class="n">Application</span>
+<span class="c1"># To import the component created</span>
+<span class="kn">from</span> <span class="nn">pedalboard_selector</span> <span class="kn">import</span> <span class="n">PedalboardSelector</span>
+
+<span class="n">application</span> <span class="o">=</span> <span class="n">Application</span><span class="p">(</span><span class="n">path_data</span><span class="o">=</span><span class="s2">&quot;data/&quot;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">)</span>
+<span class="c1"># Add the code</span>
+<span class="n">application</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">PedalboardSelector</span><span class="p">(</span><span class="n">application</span><span class="p">))</span>
+<span class="n">application</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">pause</span><span class="p">()</span>
+<span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+    <span class="n">application</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+</pre></div>
+
+
+<h2>5. Physical buttons</h2>
 <p><img alt="Pedal Pi components: Raspberry Pi, charger, SD Card and USB Audio interface" src="/images/footswitch.jpg"></p>
-<h2>5. Acknowledgment</h2>
+<h2>6. Acknowledgment</h2>
 <p>Thanks for the open community by the free images used in this blog post!</p>
 <ul>
 <li><a href="http://gpiozero.readthedocs.io/en/stable/recipes.html#button">Button image from GPIO Zero documentation</a>.</li>
