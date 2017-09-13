@@ -14,14 +14,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="referrer" content="origin" />
   <meta name="generator" content="Pelican" />
-  <link href="http://pedalpi.github.com/blog/" rel="canonical" />
+  <link href="http://pedalpi.github.io/blog/" rel="canonical" />
 
   <!-- Feed -->
 
-  <link href="http://pedalpi.github.com/blog/theme/css/style.css" type="text/css" rel="stylesheet" />
+  <link href="http://pedalpi.github.io/blog/theme/css/style.css" type="text/css" rel="stylesheet" />
 
   <!-- Code highlight color scheme -->
-      <link href="http://pedalpi.github.com/blog/theme/css/code_blocks/github.css" rel="stylesheet">
+      <link href="http://pedalpi.github.io/blog/theme/css/code_blocks/github.css" rel="stylesheet">
 
 
   <!-- Custom fonts -->
@@ -36,7 +36,7 @@
   <![endif]-->
 
 
-    <link href="http://pedalpi.github.com/blog/building-a-pedal-pi-component-pedalboard-selector.html" rel="canonical" />
+    <link href="http://pedalpi.github.io/blog/building-a-pedal-pi-component-pedalboard-selector.html" rel="canonical" />
 
         <meta name="description" content="Often is necessary use a physical controller that manages the configurations based on our need. Digital audio equipment generally offers...">
 
@@ -53,15 +53,15 @@
 <meta property="og:title" content="Building a Pedal Pi Component - Pedalboard selector"/>
 <meta property="og:description" content="Often is necessary use a physical controller that manages the configurations based on our need. Digital audio equipment generally offers..."/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="http://pedalpi.github.com/blog/building-a-pedal-pi-component-pedalboard-selector.html"/>
+<meta property="og:url" content="http://pedalpi.github.io/blog/building-a-pedal-pi-component-pedalboard-selector.html"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2017-07-26 00:00:00+02:00"/>
 <meta property="article:modified_time" content=""/>
-<meta property="article:author" content="http://pedalpi.github.com/blog/author/srmourasilva.html">
+<meta property="article:author" content="http://pedalpi.github.io/blog/author/srmourasilva.html">
 <meta property="article:section" content="About"/>
 <meta property="article:tag" content="component"/>
 <meta property="article:tag" content="Pedal Pi"/>
-<meta property="og:image" content="http://pedalpi.github.com/blog/images/footswitch.jpg">
+<meta property="og:image" content="http://pedalpi.github.io/blog/images/footswitch.jpg">
 
 <!-- Twitter Card -->
 
@@ -76,10 +76,10 @@
   "author": {
     "@type": "Person",
     "name": "SrMouraSilva",
-    "url": "http://pedalpi.github.com/blog/author/srmourasilva.html"
+    "url": "http://pedalpi.github.io/blog/author/srmourasilva.html"
   },
-  "image": "http://pedalpi.github.com/blog/images/footswitch.jpg",
-  "url": "http://pedalpi.github.com/blog/building-a-pedal-pi-component-pedalboard-selector.html",
+  "image": "http://pedalpi.github.io/blog/images/footswitch.jpg",
+  "url": "http://pedalpi.github.io/blog/building-a-pedal-pi-component-pedalboard-selector.html",
   "description": "Often is necessary use a physical controller that manages the configurations based on our need. Digital audio equipment generally offers..."
 }
 </script>
@@ -110,7 +110,7 @@
       <div class="inner">
         <nav id="navigation">
             <span id="home-button" class="nav-button">
-                <a class="home-button" href="http://pedalpi.github.com/blog/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+                <a class="home-button" href="http://pedalpi.github.io/blog/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
             </span>
           <span id="menu-button" class="nav-button">
             <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
@@ -119,11 +119,11 @@
         <h1 class="post-title">Building a Pedal Pi Component - Pedalboard selector</h1>
         <!-- TODO : Proper class for headline -->
         <span class="post-meta">
-                <a href="http://pedalpi.github.com/blog/author/srmourasilva.html">Srmourasilva</a>
+                <a href="http://pedalpi.github.io/blog/author/srmourasilva.html">Srmourasilva</a>
             | <time datetime="Qua 26 julho 2017">Qua 26 julho 2017</time>
         </span>
         <!-- TODO : Modified check -->
-            <div class="post-cover cover" style="background-image: url('http://pedalpi.github.com/blog/images/footswitch.jpg')">
+            <div class="post-cover cover" style="background-image: url('http://pedalpi.github.io/blog/images/footswitch.jpg')">
       </div>
     </header>
 
@@ -146,11 +146,11 @@ sudo apt install python3-gpiozero
 </pre></div>
 
 
-<p>If you haven't installed the Pedal Pi libraries, you can check out the <a href="http://pedalpi.github.com/blog/building-pedal-pi-raspberry-p0.html">article that explains how to configure a Pedal Pi machine</a>.</p>
+<p>If you haven't installed the Pedal Pi libraries, you can check out the <a href="http://pedalpi.github.io/blog/building-pedal-pi-raspberry-p0.html">article that explains how to configure a Pedal Pi machine</a>.</p>
 <h2>2. Testing the buttons</h2>
 <p>Our first script is a simple <em>hello world</em> like code using a button: Pressing the button, the script prints the classical Hello World in the console. If you haven't familiarity with python, a good choice is checking the <a href="https://www.raspberrypi.org/documentation/usage/python/">Raspberry Foundation Python Tutorial</a>.</p>
 <p>Connect the button like this:</p>
-<p><img alt="Connection with button and Raspberry Pi - Font: GPIO Zero" src="http://pedalpi.github.com/blog/images/gpiozero-button.png"></p>
+<p><img alt="Connection with button and Raspberry Pi - Font: GPIO Zero" src="http://pedalpi.github.io/blog/images/gpiozero-button.png"></p>
 <p>And writes the first code:</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gpiozero</span> <span class="kn">import</span> <span class="n">Button</span>
 
@@ -276,7 +276,7 @@ sudo apt install python3-gpiozero
 
 
 <h2>5. Physical buttons</h2>
-<p><img alt="Pedal Pi components: Raspberry Pi, charger, SD Card and USB Audio interface" src="http://pedalpi.github.com/blog/images/footswitch.jpg"></p>
+<p><img alt="Pedal Pi components: Raspberry Pi, charger, SD Card and USB Audio interface" src="http://pedalpi.github.io/blog/images/footswitch.jpg"></p>
 <h2>6. Acknowledgment</h2>
 <p>Thanks for the open community by the free images used in this blog post!</p>
 <ul>
@@ -286,20 +286,20 @@ sudo apt install python3-gpiozero
 
             <section class="post-info">
                 <div class="post-share">
-                    <a class="twitter" href="https://twitter.com/share?text=Building a Pedal Pi Component - Pedalboard selector&amp;url=http://pedalpi.github.com/blog/building-a-pedal-pi-component-pedalboard-selector.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <a class="twitter" href="https://twitter.com/share?text=Building a Pedal Pi Component - Pedalboard selector&amp;url=http://pedalpi.github.io/blog/building-a-pedal-pi-component-pedalboard-selector.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
                     </a>
-                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://pedalpi.github.com/blog/building-a-pedal-pi-component-pedalboard-selector.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://pedalpi.github.io/blog/building-a-pedal-pi-component-pedalboard-selector.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                     <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
                     </a>
-                    <a class="googleplus" href="https://plus.google.com/share?url=http://pedalpi.github.com/blog/building-a-pedal-pi-component-pedalboard-selector.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <a class="googleplus" href="https://plus.google.com/share?url=http://pedalpi.github.io/blog/building-a-pedal-pi-component-pedalboard-selector.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                     <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
                     </a>
                     <div class="clear"></div>
                 </div>
 
                 <aside class="post-tags">
-<a href="http://pedalpi.github.com/blog/tag/component.html">component</a><a href="http://pedalpi.github.com/blog/tag/pedal-pi.html">Pedal Pi</a>                </aside>
+<a href="http://pedalpi.github.io/blog/tag/component.html">component</a><a href="http://pedalpi.github.io/blog/tag/pedal-pi.html">Pedal Pi</a>                </aside>
 
                 <div class="clear"></div>
 
@@ -329,7 +329,7 @@ sudo apt install python3-gpiozero
     </footer>
   </section>
 
-  <script type="text/javascript" src="http://pedalpi.github.com/blog/theme/js/script.js"></script>
+  <script type="text/javascript" src="http://pedalpi.github.io/blog/theme/js/script.js"></script>
 
     <script type="text/javascript">
     var _gaq = _gaq || [];
