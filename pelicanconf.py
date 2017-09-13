@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 
 AUTHOR = 'SrMouraSilva'
 SITENAME = 'Pedal Pi - Blog'
-SITEURL = 'http://pedalpi.github.io/blog'
+SITEURL = 'https://pedalpi.github.io/blog'
 #SITEURL = ''
 #DELETE_OUTPUT_DIRECTORY = True
 
