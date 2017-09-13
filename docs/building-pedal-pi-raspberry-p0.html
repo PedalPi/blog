@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Building Pedal Pi - Raspberry P0</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+  <link href="http://pedalpi.github.com/blog/" rel="canonical" />
+
+  <!-- Feed -->
+
+  <link href="http://pedalpi.github.com/blog/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="http://pedalpi.github.com/blog/theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+    <link href="http://pedalpi.github.com/blog/building-pedal-pi-raspberry-p0.html" rel="canonical" />
+
+        <meta name="description" content="The brazilian article "Pedal Pi - DIY audio plugin multiprocessor" (pt-BR) introduces the project for the cientific comunity. In hin,...">
+
+        <meta name="author" content="SrMouraSilva">
+
+        <meta name="tags" content="DIY">
+        <meta name="tags" content="Pedal Pi">
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Pedal Pi - Blog"/>
+<meta property="og:title" content="Building Pedal Pi - Raspberry P0"/>
+<meta property="og:description" content="The brazilian article "Pedal Pi - DIY audio plugin multiprocessor" (pt-BR) introduces the project for the cientific comunity. In hin,..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="http://pedalpi.github.com/blog/building-pedal-pi-raspberry-p0.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2017-08-31 00:00:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="http://pedalpi.github.com/blog/author/srmourasilva.html">
+<meta property="article:section" content="About"/>
+<meta property="article:tag" content="DIY"/>
+<meta property="article:tag" content="Pedal Pi"/>
+<meta property="og:image" content="http://pedalpi.github.com/blog/images/guitar-tiny.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "Building Pedal Pi - Raspberry P0",
+  "headline": "Building Pedal Pi - Raspberry P0",
+  "datePublished": "2017-08-31 00:00:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "SrMouraSilva",
+    "url": "http://pedalpi.github.com/blog/author/srmourasilva.html"
+  },
+  "image": "http://pedalpi.github.com/blog/images/guitar-tiny.jpg",
+  "url": "http://pedalpi.github.com/blog/building-pedal-pi-raspberry-p0.html",
+  "description": "The brazilian article "Pedal Pi - DIY audio plugin multiprocessor" (pt-BR) introduces the project for the cientific comunity. In hin,..."
+}
+</script>
+</head>
+<!-- TODO : Body class -->
+<body class="home-template">
+
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
+          <li><a href="./" role="presentation">Home</a></li>
+          <li><a href="http://pedalpi.github.io/" role="presentation">Site</a></li>
+
+
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="http://pedalpi.github.com/blog/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">Building Pedal Pi - Raspberry P0</h1>
+        <!-- TODO : Proper class for headline -->
+        <span class="post-meta">
+                <a href="http://pedalpi.github.com/blog/author/srmourasilva.html">Srmourasilva</a>
+            | <time datetime="Qui 31 agosto 2017">Qui 31 agosto 2017</time>
+        </span>
+        <!-- TODO : Modified check -->
+            <div class="post-cover cover" style="background-image: url('http://pedalpi.github.com/blog/images/guitar-tiny.jpg')">
+      </div>
+    </header>
+
+  <section id="wrapper">
+    <a class="hidden-close"></a>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <p>The brazilian article <a href="https://github.com/PedalPi/Documentacao/raw/master/ERIPI/Pedal%20Pi%20-%20Multi-processador%20de%20plugins%20de%20%C3%A1udio%20DIY.pdf">"Pedal Pi - DIY audio plugin multiprocessor"</a> (pt-BR) introduces the project for the cientific comunity. In hin, informations about the specification choises and software achitecture are presented.</p>
+<p>The cientific article isn't a guide for to mount a Pedal Pi machine. This article is for this. We will be configure a <strong>Pedal Pi</strong> version with <em>Raspberry P0</em> and <em>Webservice</em> components. With them, it's possible controls the <em>current pedalboard</em> and manages pedalboards, effects and their parameters.</p>
+<p>The content presented here has divided in three parts, <em>i)</em> project presentation, <em>ii)</em> your hardware and software installation and <em>iii)</em> the physical installation.</p>
+<h2>1. Project presentation</h2>
+<p>Motivation</p>
+<p>The Pedal Pi executes into a device that executes an Linux Operational System.
+Since this equipment is to be used in <em>out the house</em>, is a cool idea uses something transportable,
+like a <em>notebook</em> or an embedded system. We choise in here the second option.
+The following steps shows the material list and the installation.</p>
+<p>[Project image]</p>
+<p>Paragraph with the components explanation.</p>
+<h2>2. Embedded System configuration</h2>
+<h3>2.1 Materials list</h3>
+<p>For to mount the Pedal Pi based in this article, it's necessary the following materials:</p>
+<p><img alt="Pedal Pi components: Raspberry Pi, charger, SD Card and USB Audio interface" src="http://pedalpi.github.com/blog/images/components.png"></p>
+<ol>
+<li><a href="https://www.raspberrypi.org/products/">Raspberry Pi</a> (preferably version 2 or version 3);</li>
+<li>USB Audio interface;</li>
+<li><a href="https://www.raspberrypi.org/products/raspberry-pi-universal-power-supply/">USB Changer</a> more than 1.5A;</li>
+<li>MicroSD card with 4 Gigabytes or more.</li>
+</ol>
+<p>The USB Audio interface used in this tutorial is a generic called <a href="https://www.aliexpress.com/wholesale?catId=0&amp;initiative_id=SB_20170809041325&amp;SearchText=3D+USB+Sound+Card+5.1">3D Sound</a>. This choise is for demonstrative purposes, based in your low cost (between $0.85 and $6.00)</p>
+<p>Others embedded systems can be used (as an <a href="http://www.orangepi.org/">Orange Pi</a> or a <a href="http://www.banana-pi.org/">Banana Pi</a>), but for now, the library used for physical controller components are only implemented for Raspberry Pi. 😕</p>
+<h3>2.2 Software installation</h3>
+<p>First time, is necessary install the Operational System (OS) in the MicroSD card.
+For install the <a href="https://www.raspberrypi.org/downloads/raspbian/">Raspbian</a>, the OS
+that we use in Pedal Pi, you can view the
+<a href="https://www.raspberrypi.org/documentation/installation/installing-images/">Installing Operating System Images</a>
+Raspberry's tutorial.</p>
+<p>With the Operation System installed, now it's time to install the Pedal Pi softwares.
+We prepared the a script for install the softwares. <a href="https://www.raspberrypi.org/documentation/usage/terminal/">Access the terminal</a> and execute:</p>
+<div class="highlight"><pre><span></span>wget https://raw.githubusercontent.com/PedalPi/scripts/master/RaspberryP0%2Bwebservice.sh
+sh RaspberryP0+webservice.sh
+</pre></div>
+
+
+<p>Others scripts will be added in <a href="https://github.com/PedalPi/scripts">Pedal Pi Scripts repo</a>.</p>
+<h2>3. Physical component installation</h2>
+<h3>3.1 Physical materials list</h3>
+<p>For physical controls the current pedalboard, it's necessary install.</p>
+<ul>
+<li>[image] 2 seven segments display;</li>
+<li>[image] Footswitches buttons;</li>
+<li>[image] Box.</li>
+</ul>
+<p><img alt="Physical schematic" src="https://raw.githubusercontent.com/PedalPi/Raspberry-P0/master/docs/schematic.jpg"></p>
+<h3>3.2 Mounting</h3>
+<h2>4. Considerations</h2>
+<ul>
+<li>Application for management</li>
+</ul>
+<h2>5. Acknowledgment</h2>
+<p>Thanks for the open community by the free images used in this blog post!</p>
+<ul>
+<li><a href="https://commons.wikimedia.org/wiki/File:Micro_sd.svg">Micro sd.svg</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:Raspberry_Pi_B%2B_illustration.svg">Raspberry Pi B+ illustration.svg</a></li>
+<li><a href="http://freevectorfinder.com/free-vectors/phone-charger-vector/">Vector Phone Charger</a></li>
+</ul>
+<h2>References</h2>
+<ul>
+<li><a href="https://github.com/PedalPi/Raspberry-P0">Pedal Pi - Raspberry P0 repository</a>;</li>
+<li><a href="https://github.com/PedalPi/scripts">Pedal Pi Scripts repository</a>;</li>
+<li>Silva, P. M. M.; Costa, L. S; Jucá; Sandro ????; <a href="https://github.com/PedalPi/Documentacao/raw/master/ERIPI/Pedal%20Pi%20-%20Multi-processador%20de%20plugins%20de%20%C3%A1udio%20DIY.pdf">Pedal Pi - Muli-processador de plugins de áudio DIY</a></li>
+</ul>
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=Building Pedal Pi - Raspberry P0&amp;url=http://pedalpi.github.com/blog/building-pedal-pi-raspberry-p0.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http://pedalpi.github.com/blog/building-pedal-pi-raspberry-p0.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=http://pedalpi.github.com/blog/building-pedal-pi-raspberry-p0.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+                <aside class="post-tags">
+<a href="http://pedalpi.github.com/blog/tag/diy.html">DIY</a><a href="http://pedalpi.github.com/blog/tag/pedal-pi.html">Pedal Pi</a>                </aside>
+
+                <div class="clear"></div>
+
+
+                </section>
+
+
+                <aside class="post-nav">
+                    <div class="clear"></div>
+                </aside>
+
+            </div>
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
+
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script type="text/javascript" src="http://pedalpi.github.com/blog/theme/js/script.js"></script>
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-105440758-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>
