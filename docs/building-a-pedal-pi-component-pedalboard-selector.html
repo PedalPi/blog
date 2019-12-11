@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-      <meta charset="utf-8">
+    <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
@@ -36,14 +36,14 @@
   <![endif]-->
 
 
-    <link href="https://pedalpi.github.io/blog/building-a-pedal-pi-component-pedalboard-selector.html" rel="canonical" />
+  <link href="https://pedalpi.github.io/blog/building-a-pedal-pi-component-pedalboard-selector.html" rel="canonical" />
 
-        <meta name="description" content="Often is necessary use a physical controller that manages the configurations based on our need. Digital audio equipment generally offers...">
+    <meta name="description" content="Often is necessary use a physical controller that manages the configurations based on our need. Digital audio equipment generally offers...">
 
-        <meta name="author" content="SrMouraSilva">
+    <meta name="author" content="SrMouraSilva">
 
-        <meta name="tags" content="component">
-        <meta name="tags" content="Pedal Pi">
+    <meta name="tags" content="component">
+    <meta name="tags" content="Pedal Pi">
 
 
 
@@ -120,7 +120,7 @@
         <!-- TODO : Proper class for headline -->
         <span class="post-meta">
                 <a href="https://pedalpi.github.io/blog/author/srmourasilva.html">Srmourasilva</a>
-            | <time datetime="Qua 26 julho 2017">Qua 26 julho 2017</time>
+            | <time datetime="qua 26 julho 2017">qua 26 julho 2017</time>
         </span>
         <!-- TODO : Modified check -->
             <div class="post-cover cover" style="background-image: url('https://pedalpi.github.io/blog/images/footswitch.jpg')">
@@ -146,7 +146,7 @@ sudo apt install python3-gpiozero
 </pre></div>
 
 
-<p>If you haven't installed the Pedal Pi libraries, you can check out the <a href="https://pedalpi.github.io/blog/building-pedal-pi-raspberry-p0.html">article that explains how to configure a Pedal Pi machine</a>.</p>
+<p>If you haven't installed the Pedal Pi libraries, you can check out the <a href="https://pedalpi.github.io/blog/Building Pedal Pi Raspberry P0.md">article that explains how to configure a Pedal Pi machine</a>.</p>
 <h2>2. Testing the buttons</h2>
 <p>Our first script is a simple <em>hello world</em> like code using a button: Pressing the button, the script prints the classical Hello World in the console. If you haven't familiarity with python, a good choice is checking the <a href="https://www.raspberrypi.org/documentation/usage/python/">Raspberry Foundation Python Tutorial</a>.</p>
 <p>Connect the button like this:</p>
@@ -156,11 +156,11 @@ sudo apt install python3-gpiozero
 
 <span class="n">button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">button</span><span class="o">.</span><span class="n">is_pressed</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Button is pressed&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Button is pressed&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Button is not pressed&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Button is not pressed&quot;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -172,10 +172,10 @@ sudo apt install python3-gpiozero
 <span class="n">before_button</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">to_next_pedalboard</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Button next is pressed&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Button next is pressed&quot;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">to_before_pedalboard</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Button before is pressed&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Button before is pressed&quot;</span><span class="p">)</span>
 
 <span class="n">next_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">to_next_pedalboard</span>
 <span class="n">before_button</span><span class="o">.</span><span class="n">when_pressed</span> <span class="o">=</span> <span class="n">to_before_pedalboard</span>

@@ -22,7 +22,7 @@ sudo apt update
 sudo apt install python3-gpiozero
 ```
 
-If you haven't installed the Pedal Pi libraries, you can check out the [article that explains how to configure a Pedal Pi machine]({filename}/Building Pedal Pi Raspberry P0.md).
+If you haven't installed the Pedal Pi libraries, you can check out the [article that explains how to configure a Pedal Pi machine]({static}/Building Pedal Pi Raspberry P0.md).
 
 ## 2. Testing the buttons
 
@@ -30,7 +30,7 @@ Our first script is a simple _hello world_ like code using a button: Pressing th
 
 Connect the button like this:
 
-![Connection with button and Raspberry Pi - Font: GPIO Zero]({filename}/images/gpiozero-button.png)
+![Connection with button and Raspberry Pi - Font: GPIO Zero]({static}/images/gpiozero-button.png)
 
 And writes the first code:
 
@@ -169,7 +169,7 @@ except KeyboardInterrupt:
 
 ## 5. Physical buttons
 
-![Pedal Pi components: Raspberry Pi, charger, SD Card and USB Audio interface]({filename}/images/footswitch.jpg)
+![Pedal Pi components: Raspberry Pi, charger, SD Card and USB Audio interface]({static}/images/footswitch.jpg)
 
 ## 6. Acknowledgment
 

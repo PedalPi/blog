@@ -34,15 +34,14 @@ def clean():
 
 def build():
     """Build local version of site"""
-    local('pelican -s pelicanconf.py')
+    local('asciidoctor -D {deploy_path} *.adoc'.format(**env))
+    local('cp *.png {deploy_path}'.format(**env))
+    local('mv {deploy_path}/README.html {deploy_path}/index.html'.format(**env))
 
 def rebuild():
-    """`build` with the delete switch"""
-    local('pelican -d -s pelicanconf.py')
-
-def regenerate():
-    """Automatically regenerate site upon file modification"""
-    local('pelican -r -s pelicanconf.py')
+    """`clean` then `build`"""
+    clean()
+    build()
 
 def serve():
     """Serve site at http://localhost:8000/"""
@@ -61,10 +60,6 @@ def reserve():
     build()
     serve()
 
-def preview():
-    """Build production version of site"""
-    local('pelican -s publishconf.py')
-
 def cf_upload():
     """Publish to Rackspace Cloud Files"""
     rebuild()
@@ -74,19 +69,8 @@ def cf_upload():
               '-K {cloudfiles_api_key} '
               'upload -c {cloudfiles_container} .'.format(**env))
 
-@hosts(production)
-def publish():
-    """Publish to production via rsync"""
-    local('pelican -s publishconf.py')
-    project.rsync_project(
-        remote_dir=dest_path,
-        exclude=".DS_Store",
-        local_dir=DEPLOY_PATH.rstrip('/') + '/',
-        delete=True,
-        extra_opts='-c',
-    )
-
 def gh_pages():
     """Publish to GitHub Pages"""
     rebuild()
-    local("ghp-import -b {github_pages_branch} {deploy_path} -p".format(**env))
+    local("ghp-import -b {github_pages_branch} {deploy_path}".format(**env))
+    local("git push origin {github_pages_branch}".format(**env))

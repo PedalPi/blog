@@ -1,10 +1,15 @@
 # Pedal Pi - Blog
 
 ```
-source PedalPi-blog/bin/activate
+python3 -m venv venv
+python setup.py develop
+```
+
+```
+source venv/bin/activate
 pelican content
-cd /output
-python -m pelican.server
+cd /dcos
+npx http-server
 ```
 
 

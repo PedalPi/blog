@@ -1,3 +1,5 @@
 __pycache__/
 PedalPi-blog/
 themes/*.zip
+pedalpi_blog.egg-info
+venv
